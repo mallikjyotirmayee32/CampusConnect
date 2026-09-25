@@ -1,0 +1,200 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Applications | CampusConnect</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      .applications-section {
+        padding: 50px 7%;
+        min-height: 70vh;
+      }
+
+      .applications-header {
+        margin-bottom: 30px;
+      }
+
+      .section-label {
+        color: #2563eb;
+        font-size: 13px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+      }
+
+      .applications-header h1 {
+        font-size: 32px;
+        margin-bottom: 8px;
+      }
+
+      .applications-header p {
+        color: #64748b;
+      }
+
+      .application-table-container {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        overflow-x: auto;
+      }
+
+      .application-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 900px;
+      }
+
+      .application-table th {
+        background: #f1f5f9;
+        padding: 16px;
+        text-align: left;
+        font-size: 13px;
+        color: #475569;
+      }
+
+      .application-table td {
+        padding: 16px;
+        border-top: 1px solid #e2e8f0;
+        font-size: 14px;
+      }
+
+      .status {
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+      .status-applied {
+        background: #dbeafe;
+        color: #1d4ed8;
+      }
+
+      .status-shortlisted {
+        background: #fef3c7;
+        color: #92400e;
+      }
+
+      .status-selected {
+        background: #dcfce7;
+        color: #166534;
+      }
+
+      .status-rejected {
+        background: #fee2e2;
+        color: #991b1b;
+      }
+
+      .action-btn {
+        border: none;
+        padding: 8px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: bold;
+        margin-right: 5px;
+      }
+
+      .shortlist-btn {
+        background: #f59e0b;
+        color: white;
+      }
+
+      .select-btn {
+        background: #16a34a;
+        color: white;
+      }
+
+      .reject-btn {
+        background: #dc2626;
+        color: white;
+      }
+
+      .action-btn:hover {
+        opacity: 0.85;
+      }
+
+      .empty-message {
+        text-align: center;
+        padding: 50px;
+        color: #64748b;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+      <a href="../index.html" class="logo">
+        <span>CC</span>
+        CampusConnect
+      </a>
+
+      <nav>
+        <a href="../index.html">HOME</a>
+        <a href="companies.html">COMPANIES</a>
+        <a href="drives.html">PLACEMENT DRIVES</a>
+        <a href="contact.html">CONTACT</a>
+      </nav>
+
+      <a href="login.html" class="login-btn"> LOGIN </a>
+    </header>
+
+    <!-- ================= APPLICATIONS ================= -->
+
+    <section class="applications-section">
+      <div class="applications-header">
+        <p class="section-label">ADMINISTRATION</p>
+
+        <h1>Student Applications</h1>
+
+        <p>View and manage students who have applied for placement drives.</p>
+      </div>
+
+      <div class="application-table-container">
+        <table class="application-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Student</th>
+              <th>Roll Number</th>
+              <th>Branch</th>
+              <th>Company</th>
+              <th>Job Role</th>
+              <th>CGPA</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody id="applicationsTableBody">
+            <tr>
+              <td colspan="9">
+                <div class="empty-message">Loading applications...</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+      <p>© 2026 CampusConnect. All Rights Reserved.</p>
+
+      <p>College Placement Management System</p>
+    </footer>
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="applications.js"></script>
+    <script src="navbar.js"></script>
+  </body>
+</html>

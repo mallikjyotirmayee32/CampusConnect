@@ -1,0 +1,184 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>My Applications | CampusConnect</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      .my-applications-section {
+        padding: 50px 7%;
+        min-height: 70vh;
+      }
+
+      .applications-header {
+        margin-bottom: 30px;
+      }
+
+      .section-label {
+        color: #2563eb;
+        font-size: 13px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+      }
+
+      .applications-header h1 {
+        font-size: 32px;
+        margin-bottom: 8px;
+      }
+
+      .applications-header p {
+        color: #64748b;
+      }
+
+      .applications-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+      }
+
+      .application-card {
+        background: white;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .company-name {
+        font-size: 21px;
+        margin-bottom: 5px;
+      }
+
+      .job-role {
+        color: #2563eb;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+
+      .application-info {
+        display: grid;
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .info-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .info-label {
+        color: #64748b;
+      }
+
+      .info-value {
+        font-weight: 600;
+        text-align: right;
+      }
+
+      .status {
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: bold;
+      }
+
+      .status-applied {
+        background: #dbeafe;
+        color: #1d4ed8;
+      }
+
+      .status-shortlisted {
+        background: #fef3c7;
+        color: #92400e;
+      }
+
+      .status-selected {
+        background: #dcfce7;
+        color: #166534;
+      }
+
+      .status-rejected {
+        background: #fee2e2;
+        color: #991b1b;
+      }
+
+      .loading-message,
+      .empty-message,
+      .error-message {
+        background: white;
+        padding: 40px;
+        text-align: center;
+        border-radius: 12px;
+        color: #64748b;
+      }
+
+      .error-message h3 {
+        color: #172033;
+        margin-bottom: 8px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+      <a href="../index.html" class="logo">
+        <span>CC</span>
+
+        CampusConnect
+      </a>
+
+      <nav>
+        <a href="../index.html"> HOME </a>
+
+        <a href="companies.html"> COMPANIES </a>
+
+        <a href="drives.html"> PLACEMENT DRIVES </a>
+
+        <a href="contact.html"> CONTACT </a>
+
+        <a href="my-applications.html" class="active"> MY APPLICATIONS </a>
+      </nav>
+
+      <a href="#" class="login-btn" onclick="logoutStudent()">LOGOUT</a>
+    </header>
+
+    <!-- ================= MY APPLICATIONS ================= -->
+
+    <section class="my-applications-section">
+      <div class="applications-header">
+        <p class="section-label">STUDENT PORTAL</p>
+
+        <h1>My Applications</h1>
+
+        <p>Track the status of your placement applications.</p>
+      </div>
+
+      <div id="applicationsContainer" class="applications-grid">
+        <div class="loading-message">Loading your applications...</div>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+      <p>© 2026 CampusConnect. All Rights Reserved.</p>
+
+      <p>College Placement Management System</p>
+    </footer>
+
+    <script src="my-applications.js"></script>
+    <script src="navbar.js"></script>
+  </body>
+</html>

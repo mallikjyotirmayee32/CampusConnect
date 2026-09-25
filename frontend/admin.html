@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Admin Dashboard | CampusConnect</title>
+<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+
+  <body>
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+      <a href="index.html" class="logo">
+        <span>CC</span>
+        CampusConnect
+      </a>
+
+      <nav>
+        <a href="index.html">HOME</a>
+
+        <a href="companies.html" class="active">COMPANIES</a>
+
+        <a href="drives.html">PLACEMENT DRIVES</a>
+
+        <a href="contact.html">CONTACT</a>
+      </nav>
+
+      <a href="login.html" class="login-btn"> LOGIN </a>
+    </header>
+
+    <!-- ================= DASHBOARD ================= -->
+
+    <main class="admin-dashboard">
+      <!-- Dashboard Header -->
+
+      <section class="dashboard-header">
+        <div>
+          <p class="dashboard-label">PLACEMENT CELL</p>
+
+          <h1>Admin Dashboard</h1>
+
+          <p>
+            Manage companies, placement drives, student applications and
+            recruitment results.
+          </p>
+        </div>
+      </section>
+
+      <!-- ================= STATISTICS ================= -->
+
+      <section class="dashboard-stats">
+        <div class="stat-card">
+          <div class="stat-icon">🏢</div>
+
+          <div>
+            <h2>0</h2>
+            <p>Companies</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">📅</div>
+
+          <div>
+            <h2>0</h2>
+            <p>Placement Drives</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">🎓</div>
+
+          <div>
+            <h2>0</h2>
+            <p>Applications</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">🏆</div>
+
+          <div>
+            <h2>0</h2>
+            <p>Students Placed</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= MANAGEMENT ================= -->
+
+      <section class="management-section">
+        <div class="section-title">
+          <p>MANAGEMENT</p>
+
+          <h2>Placement Operations</h2>
+        </div>
+
+        <div class="management-grid">
+          <!-- COMPANY -->
+
+          <a href="manage-companies.html" class="management-card">
+            <div class="management-icon">🏢</div>
+
+            <h3>Company Management</h3>
+
+            <p>Add new companies and manage company information.</p>
+
+            <span> Manage Companies → </span>
+          </a>
+
+          <!-- DRIVES -->
+
+          <a href="add-drive.html" class="management-card">
+            <div class="management-icon">📅</div>
+
+            <h3>Placement Drives</h3>
+
+            <p>Create and manage upcoming placement drives.</p>
+
+            <span> Manage Drives → </span>
+          </a>
+
+          <!-- APPLICATIONS -->
+
+          <a href="#" class="management-card">
+            <div class="management-icon">📋</div>
+
+            <h3>Student Applications</h3>
+
+            <p>View students who have applied for placement drives.</p>
+
+            <span> View Applications → </span>
+          </a>
+
+          <!-- SHORTLIST -->
+
+          <a href="#" class="management-card">
+            <div class="management-icon">✅</div>
+
+            <h3>Shortlisting</h3>
+
+            <p>
+              Check eligibility and shortlist students for recruitment rounds.
+            </p>
+
+            <span> Shortlist Students → </span>
+          </a>
+
+          <!-- INTERVIEW -->
+
+          <a href="#" class="management-card">
+            <div class="management-icon">🎯</div>
+
+            <h3>Recruitment Rounds</h3>
+
+            <p>Manage aptitude tests, interviews and selection rounds.</p>
+
+            <span> Manage Rounds → </span>
+          </a>
+
+          <!-- RESULTS -->
+
+          <a href="#" class="management-card">
+            <div class="management-icon">🏆</div>
+
+            <h3>Results & Reports</h3>
+
+            <p>Record selected students and generate placement reports.</p>
+
+            <span> View Results → </span>
+          </a>
+        </div>
+      </section>
+
+      <!-- ================= RECENT ACTIVITY ================= -->
+
+      <section class="recent-section">
+        <div class="section-title">
+          <p>ACTIVITY</p>
+
+          <h2>Recent Placement Activity</h2>
+        </div>
+
+        <div class="empty-activity">
+          <div>📊</div>
+
+          <h3>No activity yet</h3>
+
+          <p>
+            Once you add companies and placement drives, recent activities will
+            appear here.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+      <p>© 2026 CampusConnect. All Rights Reserved.</p>
+
+      <p>College Placement Management System</p>
+    </footer>
+  </body>
+</html>

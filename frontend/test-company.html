@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Test Company</title>
+  </head>
+  <body>
+    <h1>Test Company API</h1>
+
+    <button onclick="addCompany()">Add Test Company</button>
+
+    <script>
+      function addCompany() {
+        const company = {
+          companyName: "TCS",
+          industry: "Information Technology",
+          companyEmail: "hr@tcs.com",
+          contactPerson: "TCS HR",
+          contactNumber: "9876543210",
+          website: "https://www.tcs.com",
+        };
+
+        fetch("http://localhost:8080/api/companies", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(company),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            alert("Company added successfully!");
+          })
+          .catch((error) => {
+            console.error(error);
+            alert("Error adding company");
+          });
+      }
+    </script>
+  </body>
+</html>

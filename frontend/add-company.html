@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Add Company | CampusConnect</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="add-company.css" />
+  </head>
+
+  <body>
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+      <a href="index.html" class="logo">
+        <span>CC</span>
+        CampusConnect
+      </a>
+
+      <nav>
+        <a href="index.html">HOME</a>
+
+        <a href="companies.html">COMPANIES</a>
+
+        <a href="drives.html">PLACEMENT DRIVES</a>
+
+        <a href="contact.html">CONTACT</a>
+      </nav>
+
+      <a href="login.html" class="login-btn">LOGIN</a>
+    </header>
+
+    <!-- ================= PAGE HEADER ================= -->
+
+    <section class="form-page-header">
+      <div>
+        <p>PLACEMENT CELL</p>
+
+        <h1>Add New Company</h1>
+
+        <span>
+          Enter the company information that will be used for placement
+          management.
+        </span>
+      </div>
+
+      <a href="admin-dashboard.html" class="back-btn"> ← Dashboard </a>
+    </section>
+
+    <!-- ================= COMPANY FORM ================= -->
+
+    <main class="company-form-page">
+      <form id="companyForm">
+        <!-- BASIC INFORMATION -->
+
+        <section class="form-card">
+          <div class="form-card-title">
+            <div class="form-section-icon">🏢</div>
+
+            <div>
+              <h2>Company Information</h2>
+
+              <p>Basic information about the recruiting company.</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="companyName"> Company Name <span>*</span> </label>
+
+              <input
+                type="text"
+                id="companyName"
+                placeholder="e.g. Tata Consultancy Services"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="industry"> Industry </label>
+
+              <select id="industry">
+                <option value="">Select Industry</option>
+
+                <option>Information Technology</option>
+                <option>Software Development</option>
+                <option>Banking & Finance</option>
+                <option>Consulting</option>
+                <option>Manufacturing</option>
+                <option>Healthcare</option>
+                <option>Education</option>
+                <option>Telecommunication</option>
+                <option>Retail</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="companyEmail"> Company Email </label>
+
+              <input
+                type="email"
+                id="companyEmail"
+                placeholder="hr@company.com"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="contactPerson"> HR / Contact Person </label>
+
+              <input
+                type="text"
+                id="contactPerson"
+                placeholder="Enter HR name"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="contactNumber"> Contact Number </label>
+
+              <input
+                type="tel"
+                id="contactNumber"
+                placeholder="+91 98765 43210"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="website"> Company Website </label>
+
+              <input
+                type="url"
+                id="website"
+                placeholder="https://www.company.com"
+              />
+            </div>
+          </div>
+        </section>
+
+        <!-- JOB INFORMATION -->
+
+        <section class="form-card">
+          <div class="form-card-title">
+            <div class="form-section-icon">💼</div>
+
+            <div>
+              <h2>Job Information</h2>
+
+              <p>Details about the position offered to students.</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="jobRole"> Job Role <span>*</span> </label>
+
+              <input
+                type="text"
+                id="jobRole"
+                placeholder="e.g. Software Engineer"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="package"> Package </label>
+
+              <input type="text" id="package" placeholder="e.g. ₹6 LPA" />
+            </div>
+
+            <div class="form-group full-width">
+              <label for="jobDescription"> Job Description </label>
+
+              <textarea
+                id="jobDescription"
+                rows="5"
+                placeholder="Describe the job role and responsibilities..."
+              ></textarea>
+            </div>
+          </div>
+        </section>
+
+        <!-- ELIGIBILITY -->
+
+        <section class="form-card">
+          <div class="form-card-title">
+            <div class="form-section-icon">🎓</div>
+
+            <div>
+              <h2>Student Eligibility</h2>
+
+              <p>Define which students can apply for this company.</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="minCGPA"> Minimum CGPA </label>
+
+              <input
+                type="number"
+                id="minCGPA"
+                placeholder="e.g. 7.0"
+                min="0"
+                max="10"
+                step="0.1"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="maxBacklogs"> Maximum Backlogs Allowed </label>
+
+              <input
+                type="number"
+                id="maxBacklogs"
+                placeholder="e.g. 0"
+                min="0"
+              />
+            </div>
+
+            <div class="form-group full-width">
+              <label> Eligible Branches </label>
+
+              <div class="checkbox-grid">
+                <label>
+                  <input type="checkbox" value="CSE" />
+                  CSE
+                </label>
+
+                <label>
+                  <input type="checkbox" value="IT" />
+                  IT
+                </label>
+
+                <label>
+                  <input type="checkbox" value="ECE" />
+                  ECE
+                </label>
+
+                <label>
+                  <input type="checkbox" value="EEE" />
+                  EEE
+                </label>
+
+                <label>
+                  <input type="checkbox" value="ME" />
+                  Mechanical
+                </label>
+
+                <label>
+                  <input type="checkbox" value="CE" />
+                  Civil
+                </label>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PLACEMENT DETAILS -->
+
+        <section class="form-card">
+          <div class="form-card-title">
+            <div class="form-section-icon">📅</div>
+
+            <div>
+              <h2>Placement Details</h2>
+
+              <p>Schedule and recruitment information.</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="driveDate"> Drive Date </label>
+
+              <input type="date" id="driveDate" />
+            </div>
+
+            <div class="form-group">
+              <label for="deadline"> Registration Deadline </label>
+
+              <input type="date" id="deadline" />
+            </div>
+
+            <div class="form-group">
+              <label for="location"> Drive Location </label>
+
+              <input
+                type="text"
+                id="location"
+                placeholder="e.g. College Auditorium"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="driveType"> Drive Type </label>
+
+              <select id="driveType">
+                <option value="">Select Type</option>
+
+                <option>On Campus</option>
+                <option>Off Campus</option>
+                <option>Virtual</option>
+              </select>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="selectionProcess"> Selection Process </label>
+
+              <textarea
+                id="selectionProcess"
+                rows="4"
+                placeholder="e.g. Aptitude Test → Technical Interview → HR Interview"
+              ></textarea>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= BUTTONS ================= -->
+
+        <div class="form-actions">
+          <a href="admin-dashboard.html" class="cancel-btn"> CANCEL </a>
+
+          <button type="submit" class="save-company-btn">SAVE COMPANY</button>
+        </div>
+      </form>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+      <p>© 2026 CampusConnect. All Rights Reserved.</p>
+
+      <p>College Placement Management System</p>
+    </footer>
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="script.js"></script>
+    <script src="add-company.js"></script>
+    <script src="navbar.js"></script>
+  </body>
+</html>

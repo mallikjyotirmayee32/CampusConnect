@@ -1,0 +1,383 @@
+/* =========================================================
+   ADD COMPANY PAGE
+========================================================= */
+
+.form-page-header {
+    background: #27231f;
+    color: white;
+
+    padding: 45px 8%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 30px;
+}
+
+
+.form-page-header p {
+    color: #d2b477;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    margin: 0 0 10px;
+}
+
+
+.form-page-header h1 {
+    margin: 0 0 10px;
+
+    font-size: 38px;
+}
+
+
+.form-page-header span {
+    color: #ddd;
+
+    line-height: 1.6;
+}
+
+
+.back-btn {
+    color: white;
+
+    text-decoration: none;
+
+    border: 1px solid #777;
+
+    padding: 12px 20px;
+
+    border-radius: 6px;
+
+    white-space: nowrap;
+
+    transition: 0.3s;
+}
+
+
+.back-btn:hover {
+    border-color: #d2b477;
+
+    color: #d2b477;
+}
+
+
+/* Form Page */
+
+.company-form-page {
+    background: #f7f5f0;
+
+    padding: 50px 25px 70px;
+}
+
+
+.company-form-page form {
+    max-width: 1050px;
+
+    margin: auto;
+}
+
+
+/* Form Cards */
+
+.form-card {
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 10px;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 4px 18px rgba(0, 0, 0, 0.05);
+}
+
+
+.form-card-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding-bottom: 25px;
+
+    margin-bottom: 25px;
+
+    border-bottom: 1px solid #eee;
+}
+
+
+.form-section-icon {
+    width: 50px;
+    height: 50px;
+
+    background: #f4f0e8;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+}
+
+
+.form-card-title h2 {
+    margin: 0 0 5px;
+
+    font-size: 22px;
+}
+
+
+.form-card-title p {
+    margin: 0;
+
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+/* Form Grid */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 22px;
+}
+
+
+.form-group {
+    margin: 0;
+}
+
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #333;
+}
+
+
+.form-group label span {
+    color: #b89455;
+}
+
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 13px 14px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 6px;
+
+    background: white;
+
+    color: #333;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.3s;
+}
+
+
+.form-group textarea {
+    resize: vertical;
+}
+
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #b89455;
+
+    box-shadow:
+        0 0 0 2px rgba(184, 148, 85, 0.10);
+}
+
+
+/* Branch Checkboxes */
+
+.checkbox-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+}
+
+
+.checkbox-grid label {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 12px;
+
+    margin: 0;
+
+    background: #faf9f6;
+
+    border: 1px solid #eee;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-weight: 500;
+}
+
+
+.checkbox-grid input {
+    width: auto;
+
+    accent-color: #b89455;
+}
+
+
+/* Form Actions */
+
+.form-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 15px;
+
+    margin-top: 30px;
+}
+
+
+.cancel-btn,
+.save-company-btn {
+    padding: 14px 28px;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+}
+
+
+.cancel-btn {
+    border: 1px solid #ccc;
+
+    color: #555;
+
+    background: white;
+
+    text-decoration: none;
+}
+
+
+.cancel-btn:hover {
+    border-color: #999;
+}
+
+
+.save-company-btn {
+    border: none;
+
+    background: #27231f;
+
+    color: white;
+}
+
+
+.save-company-btn:hover {
+    background: #94743d;
+}
+
+
+/* Add Company Responsive */
+
+@media (max-width: 700px) {
+
+    .form-page-header {
+        padding: 35px 25px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .form-page-header h1 {
+        font-size: 30px;
+    }
+
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .form-group.full-width {
+        grid-column: auto;
+    }
+
+
+    .checkbox-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+    .form-card {
+        padding: 25px 20px;
+    }
+
+
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+
+
+    .cancel-btn,
+    .save-company-btn {
+        text-align: center;
+
+        width: 100%;
+
+        box-sizing: border-box;
+    }
+
+}

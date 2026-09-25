@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Login | CampusConnect</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="login.css" />
+  </head>
+
+  <body>
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+      <a href="index.html" class="logo">
+        <span>CC</span>
+        CampusConnect
+      </a>
+
+      <nav>
+        <a href="index.html">HOME</a>
+        <a href="companies.html">COMPANIES</a>
+        <a href="drives.html">PLACEMENT DRIVES</a>
+        <a href="contact.html">CONTACT</a>
+      </nav>
+
+      <a href="login.html" class="login-btn">LOGIN</a>
+    </header>
+
+    <!-- ================= LOGIN SECTION ================= -->
+
+    <section class="login-section">
+      <div class="login-container">
+        <div class="login-header">
+          <div class="login-logo">CC</div>
+
+          <h1>Welcome Back</h1>
+
+          <p>Login to your CampusConnect account</p>
+        </div>
+
+        <!-- ================= ROLE SELECTION ================= -->
+
+        <div class="role-selection">
+          <button
+            type="button"
+            class="role-btn active"
+            onclick="selectRole('admin')"
+            id="adminRole"
+          >
+            🏫
+            <span>Admin</span>
+          </button>
+
+          <button
+            type="button"
+            class="role-btn"
+            onclick="selectRole('student')"
+            id="studentRole"
+          >
+            🎓
+            <span>Student</span>
+          </button>
+        </div>
+
+        <!-- ================= LOGIN FORM ================= -->
+
+        <form id="loginForm">
+          <input type="hidden" id="selectedRole" value="admin" />
+
+          <div class="form-group">
+            <label for="email"> Email Address </label>
+
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password"> Password </label>
+
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+
+          <div class="login-options">
+            <label>
+              <input type="checkbox" />
+              Remember me
+            </label>
+
+            <a href="#">Forgot Password?</a>
+          </div>
+
+          <button type="submit" class="login-submit">LOGIN</button>
+        </form>
+
+        <p class="login-note">
+          New to CampusConnect?
+
+          <a href="#"> Contact the Placement Cell </a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+      <p>© 2026 CampusConnect. All Rights Reserved.</p>
+
+      <p>College Placement Management System</p>
+    </footer>
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="login.js"></script>
+  </body>
+</html>
