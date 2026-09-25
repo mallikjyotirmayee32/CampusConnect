@@ -38,10 +38,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (email === "" || password === "") {
       alert("Please enter your Email ID and Password.");
+
       return;
     }
 
-    /* ================= ADMIN ================= */
+    /* ================= ADMIN LOGIN ================= */
 
     if (role === "admin") {
       sessionStorage.setItem("campusConnectRole", "admin");
@@ -53,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    /* ================= STUDENT ================= */
+    /* ================= STUDENT LOGIN ================= */
 
     if (role === "student") {
       try {
@@ -79,10 +80,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
         console.log("Login response:", responseText);
 
-        /* SUCCESS */
+        /* ================= SUCCESS ================= */
 
         if (response.ok) {
-          const student = JSON.parse(responseText);
+          let student;
+
+          try {
+            student = JSON.parse(responseText);
+          } catch (error) {
+            console.error("Invalid JSON:", error);
+
+            alert("Login succeeded, but student data could not be read.");
+
+            return;
+          }
 
           sessionStorage.setItem(
             "campusConnectStudent",
@@ -91,37 +102,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
           sessionStorage.setItem("campusConnectRole", "student");
 
-          alert("Welcome " + student.fullName + "!");
+          alert("Welcome " + (student.fullName || "Student") + "!");
 
           window.location.href = "drives.html";
 
           return;
         }
 
-        /* STUDENT NOT FOUND */
+        /* ================= STUDENT NOT FOUND ================= */
 
         if (response.status === 404) {
           alert(
             "Student account not found.\n\n" +
-              "Please check your email address.",
+              "The email you entered is not registered.",
           );
 
           return;
         }
 
-        /* WRONG PASSWORD */
+        /* ================= WRONG PASSWORD ================= */
 
         if (response.status === 401) {
-          alert("Incorrect password.\n\n" + "Please check your password.");
+          alert(
+            "Incorrect password.\n\n" +
+              "The email exists, but the password is incorrect.",
+          );
 
           return;
         }
 
-        /* OTHER ERROR */
+        /* ================= OTHER ERROR ================= */
 
         alert(
           "Login failed.\n\n" +
-            "Server returned: " +
+            "Status: " +
             response.status +
             "\n\n" +
             responseText,
@@ -131,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         alert(
           "Unable to connect to CampusConnect backend.\n\n" +
-            "Please make sure Spring Boot is running.",
+            "Please try again.",
         );
       }
     }
