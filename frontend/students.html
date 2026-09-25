@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>CampusConnect | Students</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+      <a href="index.html" class="logo">
+        <span>CC</span>
+        CampusConnect
+      </a>
+
+      <nav>
+        <a href="index.html" class="active">HOME</a>
+        <a href="companies.html">COMPANIES</a>
+        <a href="drives.html">PLACEMENT DRIVES</a>
+        <a href="contact.html">CONTACT</a>
+        <a href="my-applications.html">MY APPLICATIONS</a>
+      </nav>
+
+      <a href="login.html" class="login-btn"> LOGIN </a>
+    </header>
+
+    <!-- ================= STUDENTS SECTION ================= -->
+
+    <main class="students-section">
+      <div class="page-header">
+        <a href="add-student.html" class="add-student-btn"> + ADD STUDENT </a>
+        <div>
+          <p class="section-label">CAMPUSCONNECT</p>
+
+          <h1>Student Management</h1>
+
+          <p>
+            Manage and view registered students and their placement eligibility.
+          </p>
+        </div>
+
+        <div class="student-count">
+          <span>Total Students</span>
+          <strong id="studentCount">00</strong>
+        </div>
+      </div>
+
+      <!-- ================= STUDENT TABLE ================= -->
+
+      <div class="student-table-container">
+        <table class="student-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>NAME</th>
+              <th>EMAIL</th>
+              <th>ROLL NUMBER</th>
+              <th>BRANCH</th>
+              <th>CGPA</th>
+              <th>BACKLOGS</th>
+              <th>GRADUATION YEAR</th>
+              <th>ACTION</th>
+            </tr>
+          </thead>
+
+          <tbody id="studentTableBody">
+            <tr>
+              <td colspan="9" class="loading-message">Loading students...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+      <p>© 2026 CampusConnect. All rights reserved.</p>
+    </footer>
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="script.js"></script>
+    <script src="students.js"></script>
+    <script src="navbar.js"></script>
+  </body>
+</html>

@@ -1,35 +1,50 @@
+/* =========================================================
+   CAMPUSCONNECT - MY APPLICATIONS
+========================================================= */
+
 document.addEventListener("DOMContentLoaded", function () {
   loadMyApplications();
 });
 
 async function loadMyApplications() {
-  const container = document.getElementById("applicationsContainer");
+  const container = document.getElementById("applicationContainer");
 
-  if (!container) {
-    return;
-  }
+  const emptyApplications = document.getElementById("emptyApplications");
 
-  // =====================================================
-  // GET LOGGED-IN STUDENT
-  // =====================================================
+  const applicationCount = document.getElementById("applicationCount");
+
+  /* ================= LOGIN CHECK ================= */
 
   const studentData = sessionStorage.getItem("campusConnectStudent");
 
   if (!studentData) {
     container.innerHTML = `
-      <div class="error-message">
+            <div class="login-required">
 
-        <h3>Student Login Required</h3>
+                <div class="login-required-icon">
+                    🔐
+                </div>
 
-        <p>
-          Please login as a student to view your applications.
-        </p>
+                <h3>
+                    Student Login Required
+                </h3>
 
-      </div>
-    `;
+                <p>
+                    Please login as a student
+                    to view your applications.
+                </p>
+
+                <a href="login.html">
+                    LOGIN →
+                </a>
+
+            </div>
+        `;
 
     return;
   }
+
+  /* ================= READ STUDENT ================= */
 
   let student;
 
@@ -40,105 +55,73 @@ async function loadMyApplications() {
 
     sessionStorage.removeItem("campusConnectStudent");
 
-    container.innerHTML = `
-      <div class="error-message">
-
-        <h3>Invalid Login Session</h3>
-
-        <p>
-          Please login again.
-        </p>
-
-      </div>
-    `;
+    window.location.href = "login.html";
 
     return;
   }
 
   console.log("Logged-in student:", student);
 
-  // =====================================================
-  // GET ALL APPLICATIONS
-  // =====================================================
+  /* ================= GET APPLICATIONS ================= */
 
   try {
     const response = await fetch("http://localhost:8080/api/applications");
 
-    console.log("Applications API status:", response.status);
-
     if (!response.ok) {
-      throw new Error("Backend returned status " + response.status);
+      throw new Error("Server returned status: " + response.status);
     }
 
     const applications = await response.json();
 
     console.log("All applications:", applications);
 
-    // ===================================================
-    // FILTER CURRENT STUDENT
-    // ===================================================
+    /* ================= FILTER ================= */
 
     const myApplications = applications.filter(function (application) {
-      return (
-        application.student &&
-        Number(application.student.id) === Number(student.id)
-      );
+      return application.student && application.student.id === student.id;
     });
 
     console.log("My applications:", myApplications);
 
-    // ===================================================
-    // NO APPLICATIONS
-    // ===================================================
+    /* ================= COUNT ================= */
+
+    applicationCount.textContent = String(myApplications.length).padStart(
+      2,
+      "0",
+    );
+
+    /* ================= EMPTY ================= */
 
     if (myApplications.length === 0) {
-      container.innerHTML = `
-        <div class="empty-message">
+      container.style.display = "none";
 
-          <h3>No Applications Found</h3>
-
-          <p>
-            You have not applied for any placement drive yet.
-          </p>
-
-        </div>
-      `;
+      emptyApplications.style.display = "flex";
 
       return;
     }
 
-    // ===================================================
-    // DISPLAY APPLICATIONS
-    // ===================================================
+    /* ================= SHOW APPLICATIONS ================= */
+
+    emptyApplications.style.display = "none";
+
+    container.style.display = "grid";
 
     container.innerHTML = "";
+
+    /* ================= CREATE CARDS ================= */
 
     myApplications.forEach(function (application) {
       const company = application.company || {};
 
-      const status = application.status || "Applied";
+      /* APPLICATION DATE */
 
-      let statusClass = "status-applied";
-
-      if (status === "Shortlisted") {
-        statusClass = "status-shortlisted";
-      }
-
-      if (status === "Selected") {
-        statusClass = "status-selected";
-      }
-
-      if (status === "Rejected") {
-        statusClass = "status-rejected";
-      }
-
-      let applicationDate = "Not available";
+      let formattedDate = "Not specified";
 
       if (application.applicationDate) {
         const date = new Date(application.applicationDate);
 
         if (!isNaN(date.getTime())) {
-          applicationDate = date.toLocaleDateString("en-IN", {
+          formattedDate = date.toLocaleDateString("en-IN", {
             day: "2-digit",
             month: "short",
             year: "numeric",
@@ -146,113 +129,167 @@ async function loadMyApplications() {
         }
       }
 
+      /* STATUS */
+
+      const status = application.status || "Applied";
+
+      /* COMPANY LETTER */
+
+      const firstLetter = company.companyName
+        ? company.companyName.charAt(0).toUpperCase()
+        : "C";
+
+      /* CREATE CARD */
+
       const card = document.createElement("div");
 
       card.className = "application-card";
 
       card.innerHTML = `
 
-        <h2 class="company-name">
-          ${company.companyName || "Company"}
-        </h2>
+                    <div class="application-top">
 
-        <p class="job-role">
-          ${company.jobRole || "Job Role not specified"}
-        </p>
+                        <div class="company-letter">
+                            ${firstLetter}
+                        </div>
 
 
-        <div class="application-info">
+                        <div class="company-details">
+
+                            <h3>
+                                ${company.companyName || "Company"}
+                            </h3>
+
+                            <p>
+                                ${company.industry || "Industry not specified"}
+                            </p>
+
+                        </div>
 
 
-          <div class="info-row">
+                        <span class="application-status">
+                            ${status}
+                        </span>
 
-            <span class="info-label">
-              Industry
-            </span>
-
-            <span class="info-value">
-              ${company.industry || "N/A"}
-            </span>
-
-          </div>
+                    </div>
 
 
-          <div class="info-row">
+                    <div class="application-job">
 
-            <span class="info-label">
-              Package
-            </span>
+                        <span>
+                            JOB ROLE
+                        </span>
 
-            <span class="info-value">
-              ${company.packageAmount || "N/A"}
-            </span>
+                        <strong>
+                            ${company.jobRole || "Not specified"}
+                        </strong>
 
-          </div>
-
-
-          <div class="info-row">
-
-            <span class="info-label">
-              Drive Date
-            </span>
-
-            <span class="info-value">
-              ${company.driveDate || "N/A"}
-            </span>
-
-          </div>
+                    </div>
 
 
-          <div class="info-row">
-
-            <span class="info-label">
-              Applied On
-            </span>
-
-            <span class="info-value">
-              ${applicationDate}
-            </span>
-
-          </div>
+                    <div class="application-info">
 
 
-        </div>
+                        <div>
+
+                            <span>
+                                💰
+                            </span>
+
+                            <p>
+
+                                <strong>
+                                    ${company.packageAmount || "Not specified"}
+                                </strong>
+
+                                Package
+
+                            </p>
+
+                        </div>
 
 
-        <div>
+                        <div>
 
-          <span class="status ${statusClass}">
-            ${status}
-          </span>
+                            <span>
+                                📅
+                            </span>
 
-        </div>
+                            <p>
 
-      `;
+                                <strong>
+                                    ${formattedDate}
+                                </strong>
+
+                                Applied On
+
+                            </p>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                📍
+                            </span>
+
+                            <p>
+
+                                <strong>
+                                    ${company.location || "Campus"}
+                                </strong>
+
+                                Location
+
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="application-footer">
+
+                        <span>
+                            Application ID:
+                            #${application.id}
+                        </span>
+
+
+                        <span>
+                            Status:
+                            <strong>
+                                ${status}
+                            </strong>
+                        </span>
+
+                    </div>
+
+                `;
 
       container.appendChild(card);
     });
   } catch (error) {
-    console.error("Error loading my applications:", error);
+    console.error("Unable to load applications:", error);
 
     container.innerHTML = `
-      <div class="error-message">
 
-        <h3>
-          Unable to Load Applications
-        </h3>
+            <div class="application-error">
 
-        <p>
-          Please make sure the CampusConnect backend is running.
-        </p>
+                <h3>
+                    Unable to load applications
+                </h3>
 
-      </div>
-    `;
+                <p>
+                    Please make sure the
+                    CampusConnect backend
+                    is running.
+                </p>
+
+            </div>
+
+        `;
   }
-}
-function logoutStudent() {
-  sessionStorage.removeItem("campusConnectStudent");
-
-  alert("You have been logged out successfully.");
-
-  window.location.href = "login.html";
 }

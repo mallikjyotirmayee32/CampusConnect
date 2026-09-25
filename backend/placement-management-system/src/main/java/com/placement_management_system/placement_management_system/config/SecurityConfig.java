@@ -13,14 +13,10 @@ public class SecurityConfig {
 
         http
                 .csrf(csrf -> csrf.disable())
+                .cors(cors -> {
+                })
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "/api/test",
-                                "/api/companies/**",
-                                "/api/students/**",
-                                "/api/applications/**")
-                        .permitAll()
-                        .anyRequest().authenticated());
+                        .anyRequest().permitAll());
 
         return http.build();
     }

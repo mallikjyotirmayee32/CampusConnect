@@ -34,75 +34,100 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const email = document.getElementById("email").value.trim();
 
-    const password = document.getElementById("password").value.trim();
+    const password = document.getElementById("password").value;
 
     if (email === "" || password === "") {
       alert("Please enter your Email ID and Password.");
       return;
     }
 
-    /* =====================================================
-       ADMIN LOGIN
-    ===================================================== */
+    /* ================= ADMIN ================= */
 
     if (role === "admin") {
-      // Save login role
       sessionStorage.setItem("campusConnectRole", "admin");
 
-      // Admin goes to Add Company
+      alert("Admin login successful!");
+
       window.location.href = "add-company.html";
 
       return;
     }
 
-    /* =====================================================
-       STUDENT LOGIN
-    ===================================================== */
+    /* ================= STUDENT ================= */
 
     if (role === "student") {
       try {
         const response = await fetch(
-          "http://localhost:8080/api/students/email/" +
-            encodeURIComponent(email),
+          "http://localhost:8080/api/students/login",
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify({
+              email: email,
+              password: password,
+            }),
+          },
         );
 
-        if (!response.ok) {
-          alert("Student account not found.");
+        const responseText = await response.text();
+
+        console.log("Login status:", response.status);
+
+        console.log("Login response:", responseText);
+
+        /* SUCCESS */
+
+        if (response.ok) {
+          const student = JSON.parse(responseText);
+
+          sessionStorage.setItem(
+            "campusConnectStudent",
+            JSON.stringify(student),
+          );
+
+          sessionStorage.setItem("campusConnectRole", "student");
+
+          alert("Welcome " + student.fullName + "!");
+
+          window.location.href = "drives.html";
 
           return;
         }
 
-        const student = await response.json();
+        /* STUDENT NOT FOUND */
 
-        if (!student) {
-          alert("Student account not found.");
-
-          return;
-        }
-
-        if (student.password !== password) {
-          alert("Incorrect password.");
+        if (response.status === 404) {
+          alert(
+            "Student account not found.\n\n" +
+              "Please check your email address.",
+          );
 
           return;
         }
 
-        // Save student information
-        sessionStorage.setItem("campusConnectStudent", JSON.stringify(student));
+        /* WRONG PASSWORD */
 
-        // Save login role
-        sessionStorage.setItem("campusConnectRole", "student");
+        if (response.status === 401) {
+          alert("Incorrect password.\n\n" + "Please check your password.");
 
-        console.log(
-          "Student session saved:",
-          sessionStorage.getItem("campusConnectStudent"),
+          return;
+        }
+
+        /* OTHER ERROR */
+
+        alert(
+          "Login failed.\n\n" +
+            "Server returned: " +
+            response.status +
+            "\n\n" +
+            responseText,
         );
-
-        alert("Welcome " + student.fullName + "!");
-
-        // Student goes to Placement Drives
-        window.location.href = "drives.html";
       } catch (error) {
-        console.error("Login error:", error);
+        console.error("Student login error:", error);
 
         alert(
           "Unable to connect to CampusConnect backend.\n\n" +

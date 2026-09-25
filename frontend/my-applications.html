@@ -3,7 +3,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>My Applications | CampusConnect</title>
@@ -11,173 +10,422 @@
     <link rel="stylesheet" href="style.css" />
 
     <style>
-      .my-applications-section {
-        padding: 50px 7%;
+      /* =====================================================
+       CAMPUSCONNECT - MY APPLICATIONS
+    ===================================================== */
+
+      .applications-section {
+        padding: 80px 7%;
         min-height: 70vh;
       }
 
-      .applications-header {
-        margin-bottom: 30px;
+      .applications-heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 30px;
+        margin-bottom: 50px;
       }
 
-      .section-label {
-        color: #2563eb;
-        font-size: 13px;
-        font-weight: bold;
-        letter-spacing: 1px;
-        margin-bottom: 8px;
+      .applications-heading h1 {
+        margin: 8px 0 12px;
+        font-size: 42px;
+        font-weight: 500;
+        color: #27231f;
       }
 
-      .applications-header h1 {
+      .applications-intro {
+        margin: 0;
+        color: #777;
+        font-size: 15px;
+      }
+
+      .application-count {
+        min-width: 150px;
+        padding: 20px 25px;
+        border: 1px solid #d8c7a8;
+        text-align: center;
+      }
+
+      .application-count strong {
+        display: block;
         font-size: 32px;
-        margin-bottom: 8px;
+        font-weight: 500;
+        color: #b89455;
       }
 
-      .applications-header p {
-        color: #64748b;
+      .application-count span {
+        font-size: 11px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: #777;
       }
 
-      .applications-grid {
+      /* ================= APPLICATION GRID ================= */
+
+      .application-container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 25px;
       }
 
+      /* ================= APPLICATION CARD ================= */
+
       .application-card {
-        background: white;
-        border-radius: 12px;
-        padding: 25px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        background: #fff;
+        border: 1px solid #e4ded4;
+        padding: 28px;
+        transition: 0.3s ease;
       }
 
-      .company-name {
-        font-size: 21px;
-        margin-bottom: 5px;
+      .application-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
       }
 
-      .job-role {
-        color: #2563eb;
+      /* ================= TOP ================= */
+
+      .application-top {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding-bottom: 22px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .company-letter {
+        width: 52px;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #27231f;
+        color: #d2b477;
+        font-size: 22px;
         font-weight: 600;
-        margin-bottom: 20px;
       }
+
+      .company-details {
+        flex: 1;
+      }
+
+      .company-details h3 {
+        margin: 0 0 5px;
+        font-size: 20px;
+        font-weight: 500;
+        color: #27231f;
+      }
+
+      .company-details p {
+        margin: 0;
+        color: #888;
+        font-size: 13px;
+      }
+
+      /* ================= STATUS ================= */
+
+      .application-status {
+        padding: 7px 12px;
+        border: 1px solid #d2b477;
+        color: #94743d;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      /* ================= JOB ================= */
+
+      .application-job {
+        padding: 22px 0;
+      }
+
+      .application-job span {
+        display: block;
+        margin-bottom: 6px;
+        color: #999;
+        font-size: 10px;
+        letter-spacing: 1.5px;
+      }
+
+      .application-job strong {
+        color: #27231f;
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      /* ================= INFORMATION ================= */
 
       .application-info {
         display: grid;
-        gap: 12px;
-        margin-bottom: 20px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        padding: 20px 0;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
       }
 
-      .info-row {
+      .application-info > div {
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+      }
+
+      .application-info > div > span {
+        font-size: 16px;
+      }
+
+      .application-info p {
+        margin: 0;
+        color: #999;
+        font-size: 10px;
+        line-height: 1.5;
+      }
+
+      .application-info strong {
+        display: block;
+        color: #444;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      /* ================= CARD FOOTER ================= */
+
+      .application-footer {
         display: flex;
         justify-content: space-between;
-        gap: 20px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #e2e8f0;
+        gap: 15px;
+        padding-top: 18px;
+        color: #999;
+        font-size: 10px;
       }
 
-      .info-label {
-        color: #64748b;
+      .application-footer strong {
+        color: #94743d;
       }
 
-      .info-value {
-        font-weight: 600;
-        text-align: right;
-      }
+      /* ================= EMPTY ================= */
 
-      .status {
-        display: inline-block;
-        padding: 8px 16px;
-        border-radius: 20px;
-        font-size: 13px;
-        font-weight: bold;
-      }
-
-      .status-applied {
-        background: #dbeafe;
-        color: #1d4ed8;
-      }
-
-      .status-shortlisted {
-        background: #fef3c7;
-        color: #92400e;
-      }
-
-      .status-selected {
-        background: #dcfce7;
-        color: #166534;
-      }
-
-      .status-rejected {
-        background: #fee2e2;
-        color: #991b1b;
-      }
-
-      .loading-message,
-      .empty-message,
-      .error-message {
-        background: white;
-        padding: 40px;
+      .empty-applications {
+        min-height: 300px;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
         text-align: center;
-        border-radius: 12px;
-        color: #64748b;
+        border: 1px dashed #d8c7a8;
+        padding: 40px;
       }
 
-      .error-message h3 {
-        color: #172033;
-        margin-bottom: 8px;
+      .empty-icon {
+        font-size: 40px;
+        margin-bottom: 15px;
+      }
+
+      .empty-applications h3 {
+        margin: 0 0 10px;
+        color: #27231f;
+        font-size: 22px;
+        font-weight: 500;
+      }
+
+      .empty-applications p {
+        margin: 0 0 20px;
+        color: #888;
+      }
+
+      .empty-applications a,
+      .login-required a {
+        display: inline-block;
+        padding: 13px 22px;
+        background: #b89455;
+        color: #fff;
+        text-decoration: none;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        transition: 0.25s ease;
+      }
+
+      .empty-applications a:hover,
+      .login-required a:hover {
+        background: #94743d;
+      }
+
+      /* ================= LOGIN REQUIRED ================= */
+
+      .login-required {
+        text-align: center;
+        padding: 70px 20px;
+        border: 1px dashed #d8c7a8;
+      }
+
+      .login-required-icon {
+        font-size: 40px;
+        margin-bottom: 15px;
+      }
+
+      .login-required h3 {
+        margin: 0 0 10px;
+        color: #27231f;
+        font-size: 24px;
+        font-weight: 500;
+      }
+
+      .login-required p {
+        color: #888;
+        margin-bottom: 25px;
+      }
+
+      /* ================= ERROR ================= */
+
+      .application-error {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 60px;
+        border: 1px solid #e4ded4;
+      }
+
+      .application-error h3 {
+        color: #27231f;
+        font-weight: 500;
+      }
+
+      .application-error p {
+        color: #888;
+      }
+
+      /* ================= LOADING ================= */
+
+      .loading-application {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 60px;
+        color: #888;
+      }
+
+      /* ================= RESPONSIVE ================= */
+
+      @media (max-width: 900px) {
+        .application-container {
+          grid-template-columns: 1fr;
+        }
+
+        .applications-heading {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .applications-section {
+          padding: 50px 5%;
+        }
+
+        .applications-heading h1 {
+          font-size: 32px;
+        }
+
+        .application-info {
+          grid-template-columns: 1fr;
+        }
+
+        .application-footer {
+          flex-direction: column;
+        }
       }
     </style>
   </head>
 
   <body>
-    <!-- ================= NAVBAR ================= -->
+    <!-- =====================================================
+                     NAVBAR
+====================================================== -->
 
     <header class="navbar">
-      <a href="../index.html" class="logo">
+      <a href="index.html" class="logo">
         <span>CC</span>
 
         CampusConnect
       </a>
 
       <nav>
-        <a href="../index.html"> HOME </a>
+        <a href="index.html"> HOME </a>
 
         <a href="companies.html"> COMPANIES </a>
 
         <a href="drives.html"> PLACEMENT DRIVES </a>
 
-        <a href="contact.html"> CONTACT </a>
-
         <a href="my-applications.html" class="active"> MY APPLICATIONS </a>
+
+        <a href="contact.html"> CONTACT </a>
       </nav>
 
-      <a href="#" class="login-btn" onclick="logoutStudent()">LOGOUT</a>
+      <a href="login.html" class="login-btn"> LOGIN </a>
     </header>
 
-    <!-- ================= MY APPLICATIONS ================= -->
+    <!-- =====================================================
+                   APPLICATION SECTION
+====================================================== -->
 
-    <section class="my-applications-section">
-      <div class="applications-header">
-        <p class="section-label">STUDENT PORTAL</p>
+    <main class="applications-section">
+      <div class="applications-heading">
+        <div>
+          <p class="section-label">CAMPUSCONNECT</p>
 
-        <h1>My Applications</h1>
+          <h1>My Applications</h1>
 
-        <p>Track the status of your placement applications.</p>
+          <p class="applications-intro">
+            Track the placement opportunities you have applied for.
+          </p>
+        </div>
+
+        <div class="application-count">
+          <strong id="applicationCount"> 00 </strong>
+
+          <span> Applications </span>
+        </div>
       </div>
 
-      <div id="applicationsContainer" class="applications-grid">
-        <div class="loading-message">Loading your applications...</div>
-      </div>
-    </section>
+      <!-- =================================================
+                     APPLICATION CONTAINER
+    ================================================== -->
 
-    <!-- ================= FOOTER ================= -->
+      <div id="applicationContainer" class="application-container">
+        <div class="loading-application">Loading your applications...</div>
+      </div>
+
+      <!-- =================================================
+                        EMPTY STATE
+    ================================================== -->
+
+      <div
+        id="emptyApplications"
+        class="empty-applications"
+        style="display: none"
+      >
+        <div class="empty-icon">📄</div>
+
+        <h3>No Applications Yet</h3>
+
+        <p>You have not applied for any placement drive yet.</p>
+
+        <a href="drives.html"> VIEW PLACEMENT DRIVES → </a>
+      </div>
+    </main>
+
+    <!-- =====================================================
+                       FOOTER
+====================================================== -->
 
     <footer>
-      <p>© 2026 CampusConnect. All Rights Reserved.</p>
+      <div class="footer-logo">CampusConnect</div>
 
-      <p>College Placement Management System</p>
+      <p>Smart Placement Management for Modern Colleges</p>
+
+      <p class="copyright">© 2026 CampusConnect. All Rights Reserved.</p>
     </footer>
 
+    <!-- Existing navbar functionality -->
     <script src="my-applications.js"></script>
     <script src="navbar.js"></script>
   </body>
