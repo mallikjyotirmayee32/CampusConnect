@@ -1,3 +1,4 @@
+
 package com.placement_management_system.placement_management_system.controller;
 
 import com.placement_management_system.placement_management_system.entity.Student;
@@ -24,8 +25,34 @@ public class StudentController {
     /* ================= ADD STUDENT ================= */
 
     @PostMapping
-    public Student addStudent(@RequestBody Student student) {
-        return studentRepository.save(student);
+    public ResponseEntity<?> addStudent(@RequestBody Student student) {
+
+        if (student.getEmail() == null || student.getEmail().trim().isEmpty()) {
+            return ResponseEntity
+                    .badRequest()
+                    .body("Email is required.");
+        }
+
+        if (student.getPassword() == null || student.getPassword().trim().isEmpty()) {
+            return ResponseEntity
+                    .badRequest()
+                    .body("Password is required.");
+        }
+
+        String email = student.getEmail().trim().toLowerCase();
+
+        if (studentRepository.findByEmailIgnoreCase(email).isPresent()) {
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body("A student with this email already exists.");
+        }
+
+        student.setEmail(email);
+        student.setPassword(student.getPassword().trim());
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(studentRepository.save(student));
     }
 
     /* ================= GET ALL STUDENTS ================= */
@@ -57,9 +84,21 @@ public class StudentController {
                     .body("Student not found");
         }
 
+        if (updatedStudent.getEmail() == null ||
+                updatedStudent.getEmail().trim().isEmpty()) {
+            return ResponseEntity
+                    .badRequest()
+                    .body("Email is required.");
+        }
+
         student.setFullName(updatedStudent.getFullName());
-        student.setEmail(updatedStudent.getEmail());
-        student.setPassword(updatedStudent.getPassword());
+        student.setEmail(updatedStudent.getEmail().trim().toLowerCase());
+
+        if (updatedStudent.getPassword() != null &&
+                !updatedStudent.getPassword().trim().isEmpty()) {
+            student.setPassword(updatedStudent.getPassword().trim());
+        }
+
         student.setPhone(updatedStudent.getPhone());
         student.setRollNumber(updatedStudent.getRollNumber());
         student.setBranch(updatedStudent.getBranch());
@@ -74,7 +113,9 @@ public class StudentController {
 
     @GetMapping("/email/{email}")
     public Student getStudentByEmail(@PathVariable String email) {
-        return studentRepository.findByEmail(email).orElse(null);
+        return studentRepository
+                .findByEmailIgnoreCase(email.trim())
+                .orElse(null);
     }
 
     /* ================= STUDENT LOGIN ================= */
@@ -84,18 +125,27 @@ public class StudentController {
             @RequestBody StudentLoginRequest loginRequest) {
 
         if (loginRequest.getEmail() == null ||
-                loginRequest.getPassword() == null) {
+                loginRequest.getEmail().trim().isEmpty()) {
 
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
-                    .body("Email and password are required.");
+                    .body("Email is required.");
         }
 
-        Optional<Student> studentOptional = studentRepository.findByEmail(
-                loginRequest.getEmail().trim());
+        if (loginRequest.getPassword() == null ||
+                loginRequest.getPassword().isEmpty()) {
+
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body("Password is required.");
+        }
+
+        String email = loginRequest.getEmail().trim().toLowerCase();
+        String password = loginRequest.getPassword();
+
+        Optional<Student> studentOptional = studentRepository.findByEmailIgnoreCase(email);
 
         if (studentOptional.isEmpty()) {
-
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
                     .body("Student account not found.");
@@ -104,8 +154,7 @@ public class StudentController {
         Student student = studentOptional.get();
 
         if (student.getPassword() == null ||
-                !student.getPassword().equals(
-                        loginRequest.getPassword())) {
+                !student.getPassword().equals(password)) {
 
             return ResponseEntity
                     .status(HttpStatus.UNAUTHORIZED)

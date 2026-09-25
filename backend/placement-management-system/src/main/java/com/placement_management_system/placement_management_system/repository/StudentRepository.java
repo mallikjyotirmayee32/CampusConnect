@@ -1,3 +1,4 @@
+
 package com.placement_management_system.placement_management_system.repository;
 
 import com.placement_management_system.placement_management_system.entity.Student;
@@ -9,4 +10,5 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 
     Optional<Student> findByEmail(String email);
 
+    Optional<Student> findByEmailIgnoreCase(String email);
 }
