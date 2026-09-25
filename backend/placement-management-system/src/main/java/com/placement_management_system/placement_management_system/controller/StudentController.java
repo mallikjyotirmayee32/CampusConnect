@@ -42,6 +42,34 @@ public class StudentController {
         return studentRepository.findById(id).orElse(null);
     }
 
+    /* ================= UPDATE STUDENT ================= */
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateStudent(
+            @PathVariable Long id,
+            @RequestBody Student updatedStudent) {
+
+        Student student = studentRepository.findById(id).orElse(null);
+
+        if (student == null) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body("Student not found");
+        }
+
+        student.setFullName(updatedStudent.getFullName());
+        student.setEmail(updatedStudent.getEmail());
+        student.setPassword(updatedStudent.getPassword());
+        student.setPhone(updatedStudent.getPhone());
+        student.setRollNumber(updatedStudent.getRollNumber());
+        student.setBranch(updatedStudent.getBranch());
+        student.setCgpa(updatedStudent.getCgpa());
+        student.setBacklogs(updatedStudent.getBacklogs());
+        student.setGraduationYear(updatedStudent.getGraduationYear());
+
+        return ResponseEntity.ok(studentRepository.save(student));
+    }
+
     /* ================= GET STUDENT BY EMAIL ================= */
 
     @GetMapping("/email/{email}")
