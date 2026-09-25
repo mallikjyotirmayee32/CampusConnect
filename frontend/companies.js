@@ -21,7 +21,9 @@ async function loadCompanies() {
   }
 
   try {
-    const response = await fetch("http://localhost:8080/api/companies");
+    const response = await fetch(
+      "https://campusconnect-dvn4.onrender.com/api/companies",
+    );
 
     if (!response.ok) {
       throw new Error("Failed to load companies");
@@ -303,7 +305,7 @@ async function deleteCompany(companyId) {
 
   try {
     const response = await fetch(
-      "http://localhost:8080/api/companies/" + companyId,
+      "https://campusconnect-dvn4.onrender.com/api/companies/" + companyId,
       {
         method: "DELETE",
       },

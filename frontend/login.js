@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (role === "student") {
       try {
         const response = await fetch(
-          "http://localhost:8080/api/students/login",
+          "https://campusconnect-dvn4.onrender.com/api/students/login",
           {
             method: "POST",
 

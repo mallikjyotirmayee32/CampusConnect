@@ -16,7 +16,9 @@ async function loadStudents() {
   const studentCount = document.getElementById("studentCount");
 
   try {
-    const response = await fetch("http://localhost:8080/api/students");
+    const response = await fetch(
+      "https://campusconnect-dvn4.onrender.com/api/students",
+    );
 
     if (!response.ok) {
       throw new Error("Server returned status: " + response.status);
@@ -105,8 +107,8 @@ async function deleteStudent(id) {
     return;
   }
 
-  try {
-    const response = await fetch("http://localhost:8080/api/students/" + id, {
+  try {"https://campusconnect-dvn4.onrender.com/api/students/"
+    const response = await fetch( + id, {
       method: "DELETE",
     });
 

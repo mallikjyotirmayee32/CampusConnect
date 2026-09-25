@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   console.log("CampusConnect frontend loaded successfully.");
 
   // Backend connection test
-  fetch("http://localhost:8080/api/test")
+  fetch("https://campusconnect-dvn4.onrender.com/api/test")
     .then((response) => {
       if (!response.ok) {
         throw new Error("Backend returned status: " + response.status);

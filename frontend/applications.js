@@ -11,7 +11,9 @@ async function loadApplications() {
   }
 
   try {
-    const response = await fetch("http://localhost:8080/api/applications");
+    const response = await fetch(
+      "https://campusconnect-dvn4.onrender.com/api/applications",
+    );
 
     console.log("Applications API status:", response.status);
 
@@ -207,7 +209,7 @@ async function updateApplicationStatus(applicationId, newStatus) {
 
   try {
     const response = await fetch(
-      "http://localhost:8080/api/applications/" +
+      "https://campusconnect-dvn4.onrender.com/api/applications/" +
         applicationId +
         "?status=" +
         encodeURIComponent(newStatus),

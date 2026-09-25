@@ -65,7 +65,9 @@ async function loadMyApplications() {
   /* ================= GET APPLICATIONS ================= */
 
   try {
-    const response = await fetch("http://localhost:8080/api/applications");
+    const response = await fetch(
+      "https://campusconnect-dvn4.onrender.com/api/applications",
+    );
 
     if (!response.ok) {
       throw new Error("Server returned status: " + response.status);

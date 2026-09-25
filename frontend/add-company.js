@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ================= GET SELECTED BRANCHES ================= */
 
     const branchCheckboxes = document.querySelectorAll(
-      '.checkbox-grid input[type="checkbox"]:checked'
+      '.checkbox-grid input[type="checkbox"]:checked',
     );
 
     const eligibleBranches = [];
@@ -92,21 +92,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
       selectionProcess: selectionProcess,
 
-      status: "Active Recruiter"
+      status: "Active Recruiter",
     };
 
     /* ================= SEND DATA TO SPRING BOOT ================= */
 
     try {
       const response = await fetch(
-        "http://localhost:8080/api/companies",
+        "https://campusconnect-dvn4.onrender.com/api/companies",
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(company)
-        }
+          body: JSON.stringify(company),
+        },
       );
 
       /* ================= HANDLE SERVER ERROR ================= */
@@ -116,10 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         console.error("Server Error:", errorText);
 
-        alert(
-          "Unable to add company.\n\nServer returned: " +
-            response.status
-        );
+        alert("Unable to add company.\n\nServer returned: " + response.status);
 
         return;
       }
@@ -135,13 +132,12 @@ document.addEventListener("DOMContentLoaded", function () {
       /* ================= GO TO COMPANIES PAGE ================= */
 
       window.location.href = "companies.html";
-
     } catch (error) {
       console.error("Connection Error:", error);
 
       alert(
         "Unable to connect to CampusConnect server.\n\n" +
-        "Please make sure the Spring Boot backend is running."
+          "Please make sure the Spring Boot backend is running.",
       );
     }
   });

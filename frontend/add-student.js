@@ -97,15 +97,18 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ================= SEND TO BACKEND ================= */
 
     try {
-      const response = await fetch("http://localhost:8080/api/students", {
-        method: "POST",
+      const response = await fetch(
+        "https://campusconnect-dvn4.onrender.com/api/students",
+        {
+          method: "POST",
 
-        headers: {
-          "Content-Type": "application/json",
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify(student),
         },
-
-        body: JSON.stringify(student),
-      });
+      );
 
       /* ================= SERVER ERROR ================= */
 
