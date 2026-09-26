@@ -14,19 +14,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (role === "student") {
     nav.innerHTML = `
-            <a href="../index.html">HOME</a>
+            <a href="index.html">HOME</a>
             <a href="companies.html">COMPANIES</a>
             <a href="drives.html">PLACEMENT DRIVES</a>
             <a href="my-applications.html">MY APPLICATIONS</a>
             <a href="contact.html">CONTACT</a>
         `;
   } else if (role === "admin") {
-
-  /* ================================
+    /* ================================
        ADMIN NAVBAR
     ================================= */
     nav.innerHTML = `
-            <a href="../index.html">HOME</a>
+            <a href="index.html">HOME</a>
             <a href="companies.html">COMPANIES</a>
             <a href="students.html">STUDENTS</a>
             <a href="drives.html">PLACEMENT DRIVES</a>
